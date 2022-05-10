@@ -1,4 +1,4 @@
-﻿namespace Xvr.Utils.Interfaces;
+﻿namespace Xvr.Utils.Network;
 
 public interface ITokenStorage
 {
