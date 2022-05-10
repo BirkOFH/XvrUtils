@@ -1,4 +1,3 @@
 # Xvr.Utils
 
-[![NuGet](https://img.shields.io/nuget/vpre/TorrentCore.svg)](https://www.nuget.org/packages/Xvr.Utils)
-
+[![Nuget](https://img.shields.io/nuget/v/Xvr.Utils?style=flat-square)](https://www.nuget.org/packages/Xvr.Utils)
