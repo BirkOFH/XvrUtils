@@ -23,43 +23,43 @@ namespace Xvr.Utils.Network
             _tokenStorageKey = tokenStorageKey;
         }
 
-        public async Task<HttpServiceResponse<T>> Get<T>(string uri)
+        public async Task<HttpServiceResponse<T>?> Get<T>(string uri)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
             return await sendRequest<T>(request);
         }
 
-        public async Task<HttpServiceResponse<string>> Post(string uri, object value)
+        public async Task<HttpServiceResponse<string>?> Post(string uri, object value)
         {
             var request = createRequest(HttpMethod.Post, uri, value);
             return await sendRequest(request);
         }
 
-        public async Task<HttpServiceResponse<T>> Post<T>(string uri, object value)
+        public async Task<HttpServiceResponse<T>?> Post<T>(string uri, object value)
         {
             var request = createRequest(HttpMethod.Post, uri, value);
             return await sendRequest<T>(request);
         }
 
-        public async Task<HttpServiceResponse<string>> Put(string uri, object value)
+        public async Task<HttpServiceResponse<string>?> Put(string uri, object value)
         {
             var request = createRequest(HttpMethod.Put, uri, value);
             return await sendRequest(request);
         }
 
-        public async Task<HttpServiceResponse<T>> Put<T>(string uri, object value)
+        public async Task<HttpServiceResponse<T>?> Put<T>(string uri, object value)
         {
             var request = createRequest(HttpMethod.Put, uri, value);
             return await sendRequest<T>(request);
         }
 
-        public async Task<HttpServiceResponse<string>> Delete(string uri)
+        public async Task<HttpServiceResponse<string>?> Delete(string uri)
         {
             var request = createRequest(HttpMethod.Delete, uri);
             return await sendRequest(request);
         }
 
-        public async Task<HttpServiceResponse<T>> Delete<T>(string uri)
+        public async Task<HttpServiceResponse<T>?> Delete<T>(string uri)
         {
             var request = createRequest(HttpMethod.Delete, uri);
             return await sendRequest<T>(request); 
@@ -68,7 +68,7 @@ namespace Xvr.Utils.Network
 
         // helper methods
 
-        private HttpRequestMessage createRequest(HttpMethod method, string uri, object value = null)
+        private HttpRequestMessage createRequest(HttpMethod method, string uri, object? value = null)
         {
             var request = new HttpRequestMessage(method, uri);
             if (value != null)
@@ -76,7 +76,7 @@ namespace Xvr.Utils.Network
             return request;
         }
 
-        private async Task<HttpServiceResponse<string>> sendRequest(HttpRequestMessage request)
+        private async Task<HttpServiceResponse<string>?> sendRequest(HttpRequestMessage request)
         {
             await addJwtHeader(request);
 
@@ -129,12 +129,12 @@ namespace Xvr.Utils.Network
                 request.Headers.Add("Authorization", "Bearer " + tokenStorage.Token);
         }
 
-        private async Task<string> handleErrors(HttpResponseMessage response)
+        private async Task<string?> handleErrors(HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
-                return error["message"];
+                if (error != null) return error["message"];
             }
             return String.Empty;
         }

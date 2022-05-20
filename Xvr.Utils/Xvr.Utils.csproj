@@ -1,16 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>LLC XVR</Copyright>
     <PackageProjectUrl>www.xvr.ru</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BirkOFH/XvrUtils</RepositoryUrl>
-    <Description>Package for send and recieve request to/from WebAPI with JWT token autentification</Description>
+
+	  <VersionSuffix>1.0.1</VersionSuffix>
+	  <AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
+	  <AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
+	  <Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
+	  <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
+
+	<Description>Package for send and recieve request to/from WebAPI with JWT token autentification</Description>
+    <Authors>DemidOFH</Authors>
+    <Company>LLC XVR</Company>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>false</Deterministic>
+	</PropertyGroup>
 
   <ItemGroup>
     <None Include="..\README.md">
@@ -21,6 +36,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.JSInterop" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
